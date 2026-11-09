@@ -18,7 +18,7 @@ class Quiet(http.server.SimpleHTTPRequestHandler):
 
 async def main():
     from playwright.async_api import async_playwright
-    httpd = socketserver.TCPServer(('127.0.0.1', 0), functools.partial(Quiet, directory=str(SITE)))
+    httpd = socketserver.ThreadingTCPServer(('127.0.0.1', 0), functools.partial(Quiet, directory=str(SITE)))
     threading.Thread(target=httpd.serve_forever, daemon=True).start()
     url = f'http://127.0.0.1:{httpd.server_address[1]}/index.html'
     async with async_playwright() as p:

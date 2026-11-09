@@ -63,6 +63,8 @@
 | Pillow | 9+ | 压缩素材、拼对照表 | `python3 -c "import PIL; print(PIL.__version__)"` |
 | Playwright | 1.40+（可选） | 批量截图、发布前自检 | `python3 -c "import playwright"` |
 
+**Claude 桌面版 / Cowork**：下载 [`interaction-mindmap.skill`](./interaction-mindmap.skill) 并打开，点击 **Save skill**。
+
 **安装技能（Claude Code）**
 
 ```bash
@@ -72,6 +74,8 @@ cp -r interaction-mindmap ~/.claude/skills/interaction-mindmap
 python3 -m pip install --user pillow playwright
 python3 -m playwright install chromium
 ```
+
+pip 需要能访问 PyPI。安装依赖和运行脚本要用**同一个** `python3`：机器上装了多个 Python（如系统自带 3.9 和 Homebrew 版）时，先用 `which python3` 确认，或者建一个虚拟环境（`python3 -m venv .venv && source .venv/bin/activate`）再装。
 
 最后一行下载 Playwright 自带的 Chromium（约 150 MB）。机器上已装 Google Chrome 时可以跳过，脚本会优先用系统 Chrome。不装 Playwright 也能用：截图改用浏览器手动截，自检改为打开页面目测。
 

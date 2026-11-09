@@ -15,7 +15,8 @@ def serve(root):
         def log_message(self, *a):
             pass
     handler = functools.partial(Quiet, directory=root)
-    httpd = socketserver.TCPServer(('127.0.0.1', 0), handler)
+    httpd = socketserver.ThreadingTCPServer(('127.0.0.1', 0), handler)
+    httpd.daemon_threads = True
     threading.Thread(target=httpd.serve_forever, daemon=True).start()
     return httpd
 
@@ -40,9 +41,14 @@ async def check(url, shots):
               const nodes = [...document.querySelectorAll('.node')];
               const noThumb = nodes.filter(n => !n.querySelector('.th')).map(n => n.textContent.trim().slice(0, 24));
               const imgs = [...document.querySelectorAll('.th img')];
+              const settle = i => (i.complete && i.naturalWidth) ? Promise.resolve() : new Promise(r => {
+                i.addEventListener('load', r, {once: true}); i.addEventListener('error', r, {once: true}); setTimeout(r, 10000);
+              });
               imgs.forEach(i => i.loading = 'eager');
-              await new Promise(r => setTimeout(r, 2500));
-              const broken = [...new Set(imgs.filter(i => !i.complete || !i.naturalWidth).map(i => i.getAttribute('src')))];
+              await Promise.all(imgs.map(settle));
+              // 偶发的连接中断不算坏图：失败的再重试一次
+              for (const i of imgs.filter(i => !i.naturalWidth)) { i.src = i.getAttribute('src').split('?')[0] + '?retry=1'; await settle(i); }
+              const broken = [...new Set(imgs.filter(i => !i.naturalWidth).map(i => i.getAttribute('src').split('?')[0]))];
               return {nodes: nodes.length, noThumb, broken, overflow: document.documentElement.scrollWidth - innerWidth};
             }''')
             await pg.click('#collapse')
