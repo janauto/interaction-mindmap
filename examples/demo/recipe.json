@@ -1,0 +1,11 @@
+[
+  {"key": "home", "op": "webp", "src": "home.png"},
+  {"key": "drawer", "op": "webp", "src": "drawer.png"},
+  {"key": "drawer_menu", "op": "webp", "src": "drawer_menu.png"},
+  {"key": "settings", "op": "webp", "src": "settings.png"},
+  {"key": "voice", "op": "webp", "src": "voice.png"},
+  {"key": "notice", "op": "webp", "src": "notice.png"},
+  {"key": "keys", "op": "webp", "src": "keys.png", "max_w": 900},
+  {"key": "screens", "op": "strip", "src": ["home.png", "drawer.png", "notice.png", "settings.png"], "h": 560},
+  {"key": "timer", "op": "gif", "src": ["timer_0.png", "timer_1.png", "timer_2.png", "timer_3.png", "timer_4.png", "timer_5.png"], "ms": 700}
+]

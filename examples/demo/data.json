@@ -1,0 +1,196 @@
+{
+  "meta": {
+    "title": "示例设备交互脑图",
+    "eyebrow": "INTERACTION-MINDMAP · 示例数据",
+    "lede": "这是 <b>interaction-mindmap</b> 自带的示例。画面由脚本生成，只用来演示结构和交互：点缩略图看大图，←/→ 切换场景，滚轮或双击放大，带 ⌕ 角标的图会自动放大到细节。",
+    "base": "assets/",
+    "legend": [
+      [
+        "ok",
+        "实机",
+        "设备上验证过"
+      ],
+      [
+        "pv",
+        "预览",
+        "只在仿真里跑过"
+      ],
+      [
+        "td",
+        "待做",
+        "已知缺口"
+      ]
+    ],
+    "kinds": {
+      "sm": "示例画面（脚本生成）"
+    },
+    "openDepth": 2,
+    "footer": "示例画面由 <code>examples/demo/make_demo_images.py</code> 生成，不代表任何真实产品。"
+  },
+  "assets": {
+    "screens": {
+      "f": "screens.webp",
+      "k": "sm",
+      "c": "四个主界面并排",
+      "wide": true
+    },
+    "home": {
+      "f": "home.webp",
+      "k": "sm",
+      "c": "首页：时间与待办",
+      "focus": [
+        0.3,
+        0.31,
+        0.4,
+        0.12
+      ]
+    },
+    "drawer": {
+      "f": "drawer.webp",
+      "k": "sm",
+      "c": "应用抽屉"
+    },
+    "drawer_menu": {
+      "f": "drawer_menu.webp",
+      "k": "sm",
+      "c": "应用长按菜单（细节框：卸载）",
+      "focus": [
+        0.04,
+        0.47,
+        0.4,
+        0.1
+      ]
+    },
+    "settings": {
+      "f": "settings.webp",
+      "k": "sm",
+      "c": "设置页"
+    },
+    "voice": {
+      "f": "voice.webp",
+      "k": "sm",
+      "c": "按住说话：正在听"
+    },
+    "notice": {
+      "f": "notice.webp",
+      "k": "sm",
+      "c": "通知列表"
+    },
+    "keys": {
+      "f": "keys.webp",
+      "k": "sm",
+      "c": "按键位置示意",
+      "wide": true,
+      "focus": [
+        0.33,
+        0.68,
+        0.36,
+        0.2
+      ]
+    },
+    "timer": {
+      "f": "timer.gif",
+      "k": "sm",
+      "c": "计时器倒数（帧序列动图）"
+    }
+  },
+  "tree": {
+    "t": "示例设备",
+    "d": "功能交互全景",
+    "i": "screens",
+    "c": [
+      {
+        "t": "硬件与输入",
+        "short": "输入",
+        "color": 1,
+        "i": "keys",
+        "c": [
+          {
+            "t": "正面三键 <kbd>◀</kbd><kbd>M</kbd><kbd>▶</kbd>",
+            "d": "左右移焦点，M 确认",
+            "i": "keys"
+          },
+          {
+            "t": "侧键 <kbd>SET</kbd>",
+            "d": "短按返回，长按设置",
+            "i": "keys",
+            "z": [
+              0.64,
+              0.3,
+              0.3,
+              0.26
+            ]
+          }
+        ]
+      },
+      {
+        "t": "首页",
+        "color": 2,
+        "i": "home",
+        "s": [
+          "ok"
+        ],
+        "c": [
+          {
+            "t": "待办卡片",
+            "d": "显示今日前 3 项",
+            "i": "home"
+          },
+          {
+            "t": "长按 <kbd>M</kbd> → 说话",
+            "d": "松手发送，气泡回复",
+            "i": "voice",
+            "s": [
+              "pv"
+            ]
+          },
+          {
+            "t": "通知",
+            "d": "下拉查看，最新在上",
+            "i": "notice"
+          }
+        ]
+      },
+      {
+        "t": "应用抽屉",
+        "color": 3,
+        "i": "drawer",
+        "c": [
+          {
+            "t": "打开：<kbd>▶</kbd> 或上推",
+            "i": "drawer"
+          },
+          {
+            "t": "长按菜单",
+            "d": "打开 · 置顶 · 重命名 · 卸载",
+            "i": "drawer_menu"
+          },
+          {
+            "t": "计时器",
+            "d": "M 暂停，SET 返回",
+            "i": "timer"
+          }
+        ]
+      },
+      {
+        "t": "设置",
+        "color": 4,
+        "i": "settings",
+        "c": [
+          {
+            "t": "亮度 · 震动 · 蓝牙",
+            "i": "settings"
+          },
+          {
+            "t": "电量提醒",
+            "d": "读数未接入",
+            "i": "notice",
+            "s": [
+              "td"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
